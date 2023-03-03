@@ -6,6 +6,7 @@ from library.models import Book
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, ListView
+from django.db.models import Q
 
 # Create your views here.
 def book_list(request):
@@ -17,9 +18,10 @@ def book_detail(request, title):
     print(single_book)
     return render(request, 'library/book_detail.html', {'book': single_book})
 
-class SearchResultsView(ListView):
-    model = Book
-    template_name = 'search_results.html'
+def SearchResultsView(request):
+    key = request.GET.get('search_key')
+    search = Book.objects.get(Q(isbn__icontains=key) | Q(title__icontains=key) | Q(summary__icontains=key))
+    return render(request, 'library/search_results.html', {'result': search})
 
 def error_404(request, exception):
     return redirect(book_list)

@@ -1,0 +1,11 @@
+{% extends 'library/base.html' %}
+
+{% block content %}
+<header>
+    <h1><a href="/">Go back to homepage</a></h1>
+</header>
+<section class="book_detail">
+    <h3>{{ result.title }}</h3>
+    <p>{{ result.summary }}</p>
+</section>
+{% endblock %}

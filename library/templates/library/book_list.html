@@ -5,7 +5,12 @@
 <header>
     <h1>BOOKS</h1>
 </header>
-<ol>
+<main>
+    <form action="{% url 'search_results' %}" method="get">
+        <input name="search_key" type="text" placeholder="Search...">
+        <button type="submit">submit</button>
+    </form>
+    <ol>
 {% for book in books %}
     <li>
         <h3><a href="{% url 'book_detail' title=book.title %}">{{ book.title }}</a></h3>
@@ -14,4 +19,5 @@
     </li>
 {% endfor %}
 </ol>
+</main>
 {% endblock %}
