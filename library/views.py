@@ -18,6 +18,11 @@ def book_detail(request, title):
     print(single_book)
     return render(request, 'library/book_detail.html', {'book': single_book})
 
+def books_by_author(request, author):
+    books = Book.objects.filter(author__name=author).values()
+    print(request)
+    return render(request, 'library/books_by_author.html', {'books': books})
+
 def SearchResultsView(request):
     key = request.GET.get('search_key')
     search = Book.objects.get(Q(isbn__icontains=key) | Q(title__icontains=key) | Q(summary__icontains=key))
