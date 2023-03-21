@@ -1,0 +1,17 @@
+{% extends 'library/base.html' %}
+{% load static %}
+
+{% block content %}
+<header>
+    <h1><a href="/">Go back to homepage</a></h1>
+</header>
+<main>
+    <ol>
+{% for collection in collections %}
+    <li>
+        <p><a href="{% url 'collection_detail' name=collection.name %}">{{ collection.name }}</a></p>
+    </li>
+{% endfor %}
+</ol>
+</main>
+{% endblock %}
