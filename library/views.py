@@ -15,8 +15,8 @@ def book_list(request):
     books = Book.objects.all()
     return render(request, 'library/book_list.html', {'books': books})
 
-def book_detail(request, title):
-    single_book = get_object_or_404(Book, title=title)
+def book_detail(request, slug):
+    single_book = get_object_or_404(Book, slug=slug)
     print(single_book)
     return render(request, 'library/book_detail.html', {'book': single_book})
 
