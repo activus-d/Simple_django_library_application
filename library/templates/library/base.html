@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="{% static 'library/library.css' %}">
 </head>
 <body>
+    <header>
+        <a href="{% url 'post_new' %}" class="top-menu">
+            {% include './icons/file-earmark-plus.svg' %}
+        </a> 
+    </header>
     <main>
         {% block content %}
         {% endblock %}

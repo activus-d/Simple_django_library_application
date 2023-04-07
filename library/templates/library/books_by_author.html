@@ -9,7 +9,7 @@
     <ol>
 {% for book in books %}
     <li>
-        <h3><a href="{% url 'book_detail' title=book.title %}">{{ book.title }}</a></h3>
+        <h3><a href="{% url 'book_detail' slug=book.slug %}">{{ book.title }}</a></h3>
         <p>ISBN: {{ book.isbn }}</p>
     </li>
 {% endfor %}

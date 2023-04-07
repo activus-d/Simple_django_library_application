@@ -8,6 +8,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, ListView
 from django.db.models import Q
+from .forms import PostForm
+from django.utils import timezone
 
 # Create your views here.
 @login_required
@@ -30,10 +32,9 @@ def collection_list(request):
     print(collections)
     return render(request, 'library/collection_list.html', {'collections': collections})
 
-def collection_detail(request, name):
-    print(name)
-    books = Book.objects.filter(collection__name=name)
-    print(books)
+def collection_detail(request, slug):
+    print(slug)
+    books = Book.objects.filter(collection__slug=slug)
     return render(request, 'library/collection_detail.html', {'books': books})
 
 def SearchResultsView(request):
@@ -43,3 +44,14 @@ def SearchResultsView(request):
 
 def error_404(request, exception):
     return redirect(book_list)
+
+def post_new(request):
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.published_date = timezone.now()
+            post.save()
+    else:
+        form = PostForm()
+    return render(request, 'library/post_edit.html', {'form': form})

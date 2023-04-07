@@ -9,7 +9,7 @@
     <ol>
 {% for collection in collections %}
     <li>
-        <p><a href="{% url 'collection_detail' name=collection.name %}">{{ collection.name }}</a></p>
+        <p><a href="{% url 'collection_detail' slug=collection.slug %}">{{ collection.name }}</a></p>
     </li>
 {% endfor %}
 </ol>
