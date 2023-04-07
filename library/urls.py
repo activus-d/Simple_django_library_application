@@ -8,7 +8,8 @@ urlpatterns = [
     path('books/<author>/', views.books_by_author, name='books_by_author'),
     path('search/', views.SearchResultsView, name="search_results"),
     path('collections/', views.collection_list, name="collection_list"),
-    path('collection/<name>', views.collection_detail, name="collection_detail"),
+    path('collection/<slug>', views.collection_detail, name="collection_detail"),
+    path('post/new/', views.post_new, name='post_new'),
 ]
 
 if settings.DEBUG:
