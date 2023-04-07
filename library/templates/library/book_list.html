@@ -20,7 +20,7 @@
 {% for book in books %}
             <li>
                 <h3><a href="{% url 'book_detail' slug=book.slug %}">{{ book.title }}</a></h3>
-                <p><a href="{% url 'books_by_author' author=book.author %}">Author: {{ book.author }}</a></p>
+                <p><a href="{% url 'books_by_author' author_slug=book.author.slug %}">Author: {{ book.author }}</a></p>
                 <p>ISBN: {{ book.isbn }}</p>
                 <p>ISBN: {{ book.published_date }}</p>
             </li>
