@@ -6,7 +6,9 @@ from django.urls import reverse
 # Create your models here.
 class Author(models.Model): 
     name = models.CharField(max_length=50, blank=False, unique=True)
-    slug = models.SlugField(blank=False, unique=True, null=True)
+    # Step 1: nullable slug (for existing data)
+    # slug = models.SlugField(blank=False, null=True, unique=False, default=None)
+    slug = models.SlugField(blank=False, unique=True)
 
     def __str__(self):
         return str(self.name)
@@ -16,7 +18,9 @@ class Author(models.Model):
     
 class Collection(models.Model):
     name = models.CharField(max_length=50)
-    slug = models.SlugField(blank=False, unique=True, null=True)
+    # Step 1: nullable slug (for existing data)
+    # slug = models.SlugField(blank=False, null=True, unique=False, default=None)
+    slug = models.SlugField(blank=False, unique=True)
 
     def __str__(self):
         return self.name
@@ -39,7 +43,9 @@ class Book(models.Model):
     isbn = models.CharField(max_length=15, unique=True)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
-    slug = models.SlugField(blank=False, unique=True, null=True)
+    # Step 1: nullable slug (for existing data)
+    # slug = models.SlugField(blank=False, null=True, unique=False, default=None)
+    slug = models.SlugField(blank=False, unique=True)
 
     def publish(self):
         self.published_date = timezone.now()

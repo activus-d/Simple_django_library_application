@@ -3,7 +3,7 @@ Tutorial on Django redirect: https://www.tutorialspoint.com/django/django_page_r
 """
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from library.models import Book, Collection
+from library.models import Book, Collection, Author
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, ListView
@@ -22,8 +22,9 @@ def book_detail(request, slug):
     print(single_book)
     return render(request, 'library/book_detail.html', {'book': single_book})
 
-def books_by_author(request, author):
-    books = Book.objects.filter(author__name=author).values()
+def books_by_author(request, author_slug):
+    author = get_object_or_404(Author, slug=author_slug)
+    books = author.books.all()
     print(request)
     return render(request, 'library/books_by_author.html', {'books': books})
 
