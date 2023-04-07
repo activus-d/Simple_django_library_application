@@ -18,8 +18,13 @@ class Author(models.Model):
     
 class Collection(models.Model):
     name = models.CharField(max_length=50)
+    #if you have exisiting data in your database and add a new field to your model, you will get an error while trying to migrate the new fields because django will ask you what to add as the default for the exiting object in your database. Follow these steps to automatically add value for the field you just created.
+    # Note: never delete you migration files becaause it can make you lose existing data. Use the command "python manage.py migrate <app name> <migration name or migration number>". Priotize using the migration number instead of name. To migrate to a previous migration before deleting the suceeding migration file.
+    # Note: Whenever you change the name a migration, you have to also change the name  migration file in the dependencies =of the suceeding migration file.
     # Step 1: nullable slug (for existing data)
     # slug = models.SlugField(blank=False, null=True, unique=False, default=None)
+    # create and empty migration file and add your migration script. Check the 0006_step_2_migrate_slug_data.py for example of this kind of script.
+    # for more info you can always run the command "python manage.py migrate --help"
     slug = models.SlugField(blank=False, unique=True)
 
     def __str__(self):

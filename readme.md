@@ -3,3 +3,5 @@
 * Research and read about Database normalization
 * Many-to-many relations. From the Django interface, the user should be able to create a collection that will have many books within it. There should also be a page that can display individual collection.
 * The collection should display what date and time a book was added to a collection.
+* Try to see if you can create a login page for the user to login. You should use a customized page and not Django default login page.
+* You can also look into registration if you have enoughh time
