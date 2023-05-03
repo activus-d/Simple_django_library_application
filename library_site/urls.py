@@ -22,4 +22,8 @@ urlpatterns = [
     path('', include('library.urls')),
 ]
 
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]
+
 handler404 = 'library.views.error_404'
