@@ -34,3 +34,12 @@ a:hover {
 .book_detail {
     padding: 0 30px;
 }
+.login {
+    padding: 1rem 0;
+}
+.user {
+    padding: 1rem 0;
+}
+.logout {
+    padding: 1rem 0;
+}
